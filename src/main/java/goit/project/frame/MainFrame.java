@@ -1,19 +1,31 @@
 package goit.project.frame;
 
+import goit.project.servis.ResizeImage;
 import javax.swing.*;
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
 
 public class MainFrame extends JFrame {
 
-    public void Viem1() {
+        public void Viem1() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        panel.setBackground(Color.GRAY);
         JLabel label = new JLabel(new String("Вітаю вас в грі \"Города\"".getBytes(), StandardCharsets.UTF_8));
         label.setFont(new Font("Arial", Font.PLAIN, 16));
         label.setBounds(110, 0, 200, 30);
-        JButton button = new JButton();
+        ImageIcon icon = new ImageIcon("Citi\\src\\main\\resources\\Fire.gif");
+        Image resizedImage = new ResizeImage().resizeImage(icon, 200, 30);
+        ImageIcon resIcon = new ImageIcon(resizedImage);
+        JButton button = new JButton(resIcon);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
         button.setText(new String("Натисні, щоб почати грати.".getBytes(), StandardCharsets.UTF_8));
+        button.setForeground(Color.ORANGE);
+        button.setVerticalTextPosition(AbstractButton.CENTER);
+        button.setHorizontalTextPosition(AbstractButton.CENTER);
+        button.setFont(new Font("Arial", Font.PLAIN, 12));
+        button.setFont(button.getFont().deriveFont(Font.BOLD));
         button.setBounds(100, 30, 200, 30);
         button.addActionListener(e -> {
             new MainFrame().Viem2();
@@ -33,6 +45,7 @@ public class MainFrame extends JFrame {
     public void Viem2() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        panel.setBackground(Color.GRAY);
         JButton button = new JButton();
         button.setText(new String("Зробити хід".getBytes(), StandardCharsets.UTF_8));
         button.setBounds(25, 150, 200, 40);
@@ -43,6 +56,9 @@ public class MainFrame extends JFrame {
         label1.setBounds(250, 70, 200, 40);
         JLabel label2 = new JLabel(new String("Компьтер каже:".getBytes(), StandardCharsets.UTF_8));
         label2.setBounds(250, 150, 200, 40);
+
+//        JTextArea textArea = new JTextArea();
+//        textArea.setBounds(250,150,200,40);
         setTitle(new String("Гра ГОРОДА".getBytes(), StandardCharsets.UTF_8));
         panel.add(button);
         panel.add(textField);
@@ -55,4 +71,5 @@ public class MainFrame extends JFrame {
         setResizable(false);
         setVisible(true);
     }
+
 }
