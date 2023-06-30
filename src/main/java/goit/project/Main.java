@@ -6,6 +6,9 @@ import goit.project.frame.MainFrame;
 public class Main {
     public static void main(String[] args) {
 
-                MainFrame.Viem1();
+        MainFrame frame = new MainFrame();
+        frame.Viem1();
     }
+
+
 }
