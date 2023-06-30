@@ -2,17 +2,20 @@ package goit.project.frame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.nio.charset.StandardCharsets;
 
 public class MainFrame {
 
     public static void Viem1() {
-        JFrame frame = new JFrame("Вітаю");
+        JFrame frame = new JFrame(new String("Вітаю".getBytes(), StandardCharsets.UTF_8));
         JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
-        JLabel label = new JLabel("Прівіт");
+        panel.setLayout(null);
+        JLabel label = new JLabel(new String("Вітаю вас в грі \"Города\"".getBytes(), StandardCharsets.UTF_8));
         label.setFont(new Font("Arial", Font.PLAIN, 16));
+        label.setBounds(110, 0, 200, 30);
         JButton button = new JButton();
-        button.setText("Start");
+        button.setBounds(100, 30, 200 , 30);
+        button.setText(new String("Натисні, щоб почати грати.".getBytes(), StandardCharsets.UTF_8));
         button.addActionListener(e -> {Viem2();
             frame.dispose();});
 
@@ -22,6 +25,7 @@ public class MainFrame {
         frame.setSize(400, 100);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 
