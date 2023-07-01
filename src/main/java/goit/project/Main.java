@@ -1,12 +1,12 @@
 package goit.project;
 
-import goit.project.frame.MainFrame;
+import goit.project.frame.MainFrame1;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        MainFrame frame = new MainFrame();
+        MainFrame1 frame = new MainFrame1();
         frame.Viem1();
     }
 

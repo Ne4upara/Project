@@ -4,9 +4,8 @@ import goit.project.servis.ResizeImage;
 import javax.swing.*;
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
-import java.awt.event.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame1 extends JFrame {
 
         public void Viem1() {
         JPanel panel = new JPanel();
@@ -29,7 +28,7 @@ public class MainFrame extends JFrame {
         button.setFont(button.getFont().deriveFont(Font.BOLD));
         button.setBounds(100, 30, 200, 30);
         button.addActionListener(e -> {
-            new MainFrame().Viem2();
+            new MainFrame1().Viem2();
             dispose();
         });
         setTitle(new String("Вітаю".getBytes(), StandardCharsets.UTF_8));
@@ -51,7 +50,7 @@ public class MainFrame extends JFrame {
         button.setText(new String("Зробити хід".getBytes(), StandardCharsets.UTF_8));
         button.setBounds(25, 150, 200, 40);
         button.addActionListener(e -> {
-            new MainFrame().Viem3();
+            new MainFrame1().Viem3();
             dispose();
         });
         JTextField textField = new JTextField(10);
