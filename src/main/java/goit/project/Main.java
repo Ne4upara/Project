@@ -1,14 +1,12 @@
 package goit.project;
 
 import goit.project.frame.MainFrame;
+import goit.project.frame.Test;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        MainFrame frame = new MainFrame();
-        frame.Viem1();
+        new MainFrame().mainFrame();
     }
-
-
 }
