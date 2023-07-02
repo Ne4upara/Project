@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.util.TreeMap;
+import static goit.project.servis.Coder.UTF_8;
 
 public class GameFrame extends JFrame{
 
@@ -16,9 +17,9 @@ public class GameFrame extends JFrame{
 
         JTextField textField = new JTextField(10);
         textField.setBounds(25, 70, 200, 40);
-        JLabel label1 = new JLabel(new String("Введіть назву міста".getBytes(), StandardCharsets.UTF_8));
+        JLabel label1 = new JLabel(UTF_8("Введіть назву міста"));
         label1.setBounds(250, 70, 200, 40);
-        JLabel label2 = new JLabel(new String("Компьтер каже:".getBytes(), StandardCharsets.UTF_8));
+        JLabel label2 = new JLabel(UTF_8("Компьтер каже:"));
         label2.setBounds(250, 150, 200, 40);
         JLabel label3 = new JLabel();
         label3.setBounds(100,210,300,30);
@@ -26,7 +27,7 @@ public class GameFrame extends JFrame{
         label3.setFont(new Font("Comic", Font.CENTER_BASELINE, 16));
         label3.setForeground(Color.RED);
         JButton button = new JButton();
-        button.setText(new String("Зробити хід".getBytes(), StandardCharsets.UTF_8));
+        button.setText(UTF_8("Зробити хід"));
         button.setBounds(25, 150, 200, 40);
         button.addActionListener(e -> {
             inputWord = textField.getText();
@@ -35,7 +36,7 @@ public class GameFrame extends JFrame{
         });
 
 
-        setTitle(new String("Гра ГОРОДА".getBytes(), StandardCharsets.UTF_8));
+        setTitle(UTF_8("Гра ГОРОДА"));
         panel.add(button);
         panel.add(textField);
         panel.add(label1);
@@ -60,16 +61,21 @@ public class GameFrame extends JFrame{
 
 
         if (inputWord.isEmpty()) {//пусто ли
-            r = new String("Введіте назву міста.".getBytes(), StandardCharsets.UTF_8);
+            r = UTF_8("Введіте назву міста.");
         } else if (test.containsKey(inputWord)) {//есть ли слово
             if (0 == test.get(inputWord)) {//значение слова 0
-                r = new String("Відповідь прийнята".getBytes(), StandardCharsets.UTF_8);
+                r = UTF_8("Відповідь прийнята");
 
             } else {
-                r = new String("Такое місто є".getBytes(), StandardCharsets.UTF_8);
+                r = UTF_8("Такое місто є");
             }
+        } else if (inputWord.equals("Help")){ // команда здатса и проиграть
+            new Test().test();
+            gameFrame() ;
+        } else if (inputWord.equals("4iter")) {// команда віграть
+            new Test().test();
         } else {
-            r = new String("Введіте коректную назву міста.".getBytes(), StandardCharsets.UTF_8);
+            r = UTF_8("Введіте коректную назву міста.");
         }
         return r;
     }
