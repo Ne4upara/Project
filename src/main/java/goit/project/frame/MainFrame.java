@@ -3,7 +3,7 @@ package goit.project.frame;
 import goit.project.servis.ResizeImage;
 import javax.swing.*;
 import java.awt.*;
-import java.nio.charset.StandardCharsets;
+import static goit.project.servis.Coder.UTF_8;
 
 public class MainFrame extends JFrame {
 
@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(Color.GRAY);
-        JLabel label = new JLabel(new String("Вітаю вас в грі \"Города\"".getBytes(), StandardCharsets.UTF_8));
+        JLabel label = new JLabel(UTF_8("Вітаю вас в грі \"Города\""));
         label.setFont(new Font("Arial", Font.PLAIN, 16));
         label.setBounds(110, 0, 200, 30);
         ImageIcon icon = new ImageIcon("Citi\\src\\main\\resources\\Fire.gif");
@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
         JButton button = new JButton(resIcon);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
-        button.setText(new String("Натисні, щоб почати грати.".getBytes(), StandardCharsets.UTF_8));
+        button.setText(UTF_8("Натисні, щоб почати грати."));
         button.setForeground(Color.ORANGE);
         button.setVerticalTextPosition(AbstractButton.CENTER);
         button.setHorizontalTextPosition(AbstractButton.CENTER);
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
             new GameFrame().gameFrame();
             dispose();
         });
-        setTitle(new String("Вітаю".getBytes(), StandardCharsets.UTF_8));
+        setTitle(UTF_8("Вітаю"));
         add(label);
         add(button);
         add(panel);
