@@ -14,6 +14,9 @@ public class MainFrame extends JFrame {
         JLabel label = new JLabel(UTF_8("Вітаю вас в грі \"Города\""));
         label.setFont(new Font("Arial", Font.PLAIN, 16));
         label.setBounds(110, 0, 200, 30);
+        JLabel label1 = new JLabel("\u00A9" + "Team-4 Go IT");
+        label1.setFont(new Font("Arial", Font.PLAIN, 9));
+        label1.setBounds(315, 50, 200, 30);
         ImageIcon icon = new ImageIcon("Citi\\src\\main\\resources\\Fire.gif");
         Image resizedImage = new ResizeImage().resizeImage(icon, 200, 30);
         ImageIcon resIcon = new ImageIcon(resizedImage);
@@ -33,6 +36,7 @@ public class MainFrame extends JFrame {
         });
         setTitle(UTF_8("Вітаю"));
         add(label);
+        add(label1);
         add(button);
         add(panel);
         setSize(400, 110);
