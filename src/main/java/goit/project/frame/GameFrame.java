@@ -9,10 +9,9 @@ import java.util.TreeMap;
 import static goit.project.servis.Coder.UTF_8;
 
 public class GameFrame extends JFrame{
-
     private String inputWord;
 
-    public void gameFrame() {
+    public GameFrame gameFrame() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setOpaque(false);
@@ -44,7 +43,7 @@ public class GameFrame extends JFrame{
         });
         panel.add(button);
 
-        ImageIcon icon = new ImageIcon("Citi\\src\\main\\resources\\Sea.gif");
+        ImageIcon icon = new ImageIcon("src\\main\\resources\\Sea.gif");
         Image resizedImage = new ResizeImage().resizeImage(icon, 500, 300);
         ImageIcon resIcon = new ImageIcon(resizedImage);
         JLabel backgroundLabel = new JLabel(resIcon);
@@ -58,6 +57,7 @@ public class GameFrame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        return this;
     }
 
     private String wordCheck (String s) {
@@ -80,10 +80,13 @@ public class GameFrame extends JFrame{
                 r = UTF_8("Такое місто є");
             }
         } else if (inputWord.equals("Help")){ // команда здатса и проиграть
-            new Test().test();
-            gameFrame() ;
-        } else if (inputWord.equals("4iter")) {// команда віграть
-            new Test().test();
+            String over = "lose";
+            new GameOverFrame().gameOverFrame(gameFrame(), over);
+//            dispose();
+
+        } else if (inputWord.equals("4")) {// команда віграть
+            String over = "vin";
+            new GameOverFrame().gameOverFrame(gameFrame(), over);
         } else {
             r = UTF_8("Введіте коректную назву міста.");
         }
