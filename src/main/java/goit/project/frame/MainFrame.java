@@ -2,6 +2,7 @@ package goit.project.frame;
 
 import goit.project.servis.ResizeImage;
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import static goit.project.servis.Coder.UTF_8;
 
@@ -17,7 +18,7 @@ public class MainFrame extends JFrame {
         JLabel label1 = new JLabel("\u00A9" + "Team-4 Go IT");
         label1.setFont(new Font("Arial", Font.PLAIN, 9));
         label1.setBounds(315, 50, 200, 30);
-        ImageIcon icon = new ImageIcon("Citi\\src\\main\\resources\\Fire.gif");
+        ImageIcon icon = new ImageIcon("src\\main\\resources\\Fire.gif");
         Image resizedImage = new ResizeImage().resizeImage(icon, 200, 30);
         ImageIcon resIcon = new ImageIcon(resizedImage);
         JButton button = new JButton(resIcon);
