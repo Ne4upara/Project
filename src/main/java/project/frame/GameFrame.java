@@ -1,8 +1,5 @@
 package project.frame;
 
-import lombok.Getter;
-import lombok.Setter;
-import project.gameLogic.ScoreCounter;
 import project.utilities.ResizeImage;
 import project.gameLogic.GameLogic;
 import javax.swing.*;
@@ -11,13 +8,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-;
-
 public class GameFrame extends JFrame{
     private String inputWord;
-    @Getter
-    @Setter
-    private String outputWord = "";
+    private String answerComp = "";
     private JLabel titleForComp;
     private JLabel answerError;
     private GameLogic gameLogic;
@@ -25,9 +18,15 @@ public class GameFrame extends JFrame{
     private GameOverFrame gameOver;
 
     public GameFrame gameFrame() {
+        gameOver = new GameOverFrame();
         gameLogic = new GameLogic();
         resizeImage = new ResizeImage();
-        gameOver = new GameOverFrame();
+        startGameFrame();
+        return this;
+    }
+
+    private void startGameFrame(){
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setOpaque(false);
@@ -39,7 +38,7 @@ public class GameFrame extends JFrame{
         JLabel titleForPeople = new JLabel("Введіть назву міста");
         titleForPeople.setBounds(250, 70, 200, 40);
         panel.add(titleForPeople);
-        this.titleForComp = new JLabel("Комп'ютер: " + getOutputWord());
+        this.titleForComp = new JLabel("Комп'ютер: " + answerComp);
         titleForComp.setBounds(250, 150, 200, 40);
         titleForComp.setFont(new Font("Comic", Font.CENTER_BASELINE, 14));
         panel.add(titleForComp);
@@ -65,7 +64,7 @@ public class GameFrame extends JFrame{
             public void mouseReleased(MouseEvent e) {
                 button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 inputWord = enterWord.getText();
-                wordCheck(inputWord);
+                wordCheck(inputWord, answerComp);
                 enterWord.setText("");
             }}) ;
         panel.add(button);
@@ -81,26 +80,25 @@ public class GameFrame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
-        return this;
     }
 
-    private void wordCheck (String s) {
-        if (s.isEmpty())  answerError.setText("Введіте коректную назву міста.");
-        else if (s.equals("Help")) gameOver.gameOverFrame(gameFrame(), "lose");
-        else if (s.equals("4iter")) gameOver.gameOverFrame(gameFrame(), "vin");
+    private void wordCheck (String enterCity, String answer) {
+        if (enterCity.isEmpty())  answerError.setText("Введіте коректную назву міста.");
+        else if (enterCity.equals("Help")) gameOver.gameOverFrame(gameFrame(), "lose");
+        else if (enterCity.equals("4iter")) gameOver.gameOverFrame(gameFrame(), "vin");
         else {
-            String out = gameLogic.isValidWord(s);
+            String out = gameLogic.isValidWord(enterCity, answer);
             switch (out){
-                case "error" -> this.answerError.setText("Такого міста нема");
-                case "is" -> this.answerError.setText("Місто вже використалось");
-                case "vin" -> gameOver.gameOverFrame(gameFrame(), "vin");
-                case "lose" -> gameOver.gameOverFrame(gameFrame(), "lose");
-                case "first_not_found" -> this.answerError.setText("Ви водите слово, не на ту букву");
+                case "the_city_exists" -> this.answerError.setText("Такого міста нема");
+                case "city_used" -> this.answerError.setText("Місто вже використалось");
+                case "over" -> gameOver.gameOverFrame(gameFrame(), "vin");
+                case "first_letter_not_found" -> this.answerError.setText("Ви водите слово, не на ту букву");
                 default -> {
-                    setOutputWord(out);
-                    this.titleForComp.setText("Комп'ютер: " + getOutputWord());
+                    answerComp = out;
+                    this.titleForComp.setText("Комп'ютер: " + answerComp);
                 }
             }
         }
     }
 }
+

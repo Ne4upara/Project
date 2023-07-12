@@ -1,13 +1,16 @@
 package project.frame;
 
 import project.utilities.ResizeImage;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
         private ResizeImage resizeImage;
-        public void mainFrame() {
+
+        public void mainFrame(){
+                startFrame();
+        }
+        private void startFrame() {
         resizeImage= new ResizeImage();
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -47,3 +50,4 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 }
+
