@@ -82,3 +82,4 @@ public class GameOverFrame extends JFrame {
         dialog.setVisible(true);
     }
 }
+
