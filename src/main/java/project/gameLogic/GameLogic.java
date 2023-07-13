@@ -1,5 +1,6 @@
 package project.gameLogic;
 
+import project.frame.GameFrame;
 import project.frame.GameOverFrame;
 
 import java.io.*;
@@ -10,8 +11,6 @@ import java.util.TreeMap;
 public class GameLogic {
     private final Map<String, Integer> citiesMap;
     private final Random random;
-
-    private Score score = new Score();
 
     public GameLogic() {
         citiesMap = new TreeMap<>();
@@ -56,8 +55,6 @@ public class GameLogic {
 
     private String getNextCity(String currentCity) {
         citiesMap.put(currentCity, 1);
-        score.score(currentCity); //подсчет очков
-        System.out.println("score.getCount() = " + score.getCount());//проверка подсчета
         String checkLastLetter = checkLastLetterIsValid(currentCity);
         String lastLetter = checkLastLetter.substring(checkLastLetter.length() - 1).toLowerCase();
         Map<String, Integer> suitableCities = new TreeMap<>();
@@ -74,7 +71,6 @@ public class GameLogic {
             citiesMap.put(nextCity, 1);
             return nextCity;
         }
-
         return "over";
     }
 

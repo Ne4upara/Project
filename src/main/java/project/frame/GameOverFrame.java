@@ -1,8 +1,8 @@
 package project.frame;
 
 import lombok.Setter;
-import project.gameLogic.Score;
 import project.utilities.ResizeImage;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,33 +15,33 @@ public class GameOverFrame extends JFrame {
     private String finish;
     private String over;
     private ResizeImage resizeImage;
-    private Score score = new Score();
+    private int count;
 
 
-    public void gameOverFrame (GameFrame gameFrame, String over) {
+    public void gameOverFrame(GameFrame gameFrame, String over, int count) {
         this.gameFrame = gameFrame;
         this.over = over;
+        this.count = count;
         resizeImage = new ResizeImage();
         over();
         overFrame();
     }
 
-
     private void over() {
         switch (over) {
             case "lose" -> {
                 setFile("/GameOver.png");
-                setFinish("Ви проигралы. Ваш счет:");
+                setFinish("Ви проигралы. ");
             }
             case "vin" -> {
                 setFile("/vin.jpg");
-                setFinish("Ви Виграли. Ваш счет:");
+                setFinish("Ви Виграли. ");
             }
         }
     }
 
     private void overFrame() {
-        System.out.println("score.getCount() = " + score.getCount()); // проверка вывод очков
+
         JDialog dialog = new JDialog(this, "Кінець гри", true);
         dialog.setSize(500, 350);
         dialog.setLocationRelativeTo(null);
@@ -60,6 +60,11 @@ public class GameOverFrame extends JFrame {
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
         rightPanel.add(textLabel, gbc);
+        JLabel textLabel1 = new JLabel("Ви вікористали ( " + count + " ) слів.");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        rightPanel.add(textLabel1, gbc);
 
         JButton buttonRestart = new JButton("Почати заново.");
         gbc.gridy = 2;
