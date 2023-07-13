@@ -1,17 +1,19 @@
 package project.frame;
 
 import project.utilities.ResizeImage;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-        private ResizeImage resizeImage;
+    private ResizeImage resizeImage;
 
-        public void mainFrame(){
-                startFrame();
-        }
-        private void startFrame() {
-        resizeImage= new ResizeImage();
+    public void mainFrame() {
+        startFrame();
+    }
+
+    private void startFrame() {
+        resizeImage = new ResizeImage();
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(Color.GRAY);
